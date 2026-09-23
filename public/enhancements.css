@@ -29,10 +29,10 @@ main{max-width:1012px;margin-top:24px}
 .folder>.row .badge{background:transparent;color:var(--folder-color,#4b9af0);font-size:20px}
 .bookmark .badge{background:#26355f;color:#9eb2ff}
 .bookmark .badge{position:relative;overflow:hidden}
-.bookmark .site-icon{display:none;width:22px;height:22px;object-fit:contain;border-radius:4px}
+.bookmark .initial{position:relative;z-index:0}
+.bookmark .site-icon{display:block;position:absolute;z-index:1;inset:4px;width:26px;height:26px;padding:2px;object-fit:contain;border-radius:6px;background:#f3f5f9}
 .bookmark .badge.has-icon{background:#f3f5f9}
-.bookmark .badge.has-icon .initial{display:none}
-.bookmark .badge.has-icon .site-icon{display:block}
+.bookmark .badge.has-icon .initial{visibility:hidden}
 .url{color:#7f899d}
 .children{border-color:#354057}
 .menu,.more>div{background:#171f30;border-color:#354057;color:#e7eaf2}
