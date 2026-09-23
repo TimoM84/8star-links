@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="nl">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -12,33 +12,33 @@
 </head>
 <body>
   <header>
-    <button id="settingsBtn" class="icon" title="Instellingen">⚙</button>
+    <button id="settingsBtn" class="icon" title="Settings">⚙</button>
     <div class="brand"><span>✦</span> 8star Links</div>
-    <div class="search"><span>⌕</span><input id="search" type="search" placeholder="Zoeken…" autocomplete="off"></div>
-    <button id="addFolder">＋ Map</button><button id="addBookmark" class="primary">＋ Link</button>
+    <div class="search"><span>⌕</span><input id="search" type="search" placeholder="Search…" autocomplete="off"></div>
+    <button id="addFolder">＋ Folder</button><button id="addBookmark" class="primary">＋ Bookmark</button>
   </header>
   <div id="settingsMenu" class="menu hidden">
-    <button data-action="import">Firefox importeren</button>
-    <button data-action="export">Firefox exporteren</button>
-    <button data-action="backup">Back-up downloaden</button>
-    <button data-action="restore">Back-up terugzetten</button>
+    <button data-action="import">Import from Firefox</button>
+    <button data-action="export">Export for Firefox</button>
+    <button data-action="backup">Download backup</button>
+    <button data-action="restore">Restore backup</button>
   </div>
-  <main><div id="empty" class="empty hidden">Nog geen links. Voeg een map of link toe, of importeer je Firefox-bookmarks.</div><div id="tree"></div></main>
+  <main><div id="empty" class="empty hidden">No bookmarks yet. Add a folder or bookmark, or import your Firefox bookmarks.</div><div id="tree"></div></main>
   <input id="importInput" type="file" accept=".html,.htm,text/html" hidden>
   <input id="restoreInput" type="file" accept=".json,application/json" hidden>
   <dialog id="itemDialog">
     <form id="itemForm" method="dialog">
-      <h2 id="formTitle">Link toevoegen</h2><input id="itemId" type="hidden"><input id="kind" type="hidden">
-      <label>Naam<input id="title" required maxlength="200"></label>
-      <label id="urlLabel">Webadres<input id="url" type="url" placeholder="https://…"></label>
-      <label>In map<select id="parent"></select></label>
-      <label id="colorLabel">Mapkleur<div class="color-picker"><input id="color" type="color" value="#e9b949"><div id="colorPresets"></div></div></label>
-      <label id="descriptionLabel">Notitie<textarea id="description" rows="3"></textarea></label>
-      <div class="actions"><button type="button" data-close>Annuleren</button><button class="primary" type="submit">Opslaan</button></div>
+      <h2 id="formTitle">Add bookmark</h2><input id="itemId" type="hidden"><input id="kind" type="hidden">
+      <label>Name<input id="title" required maxlength="200"></label>
+      <label id="urlLabel">Web address<input id="url" type="url" placeholder="https://…"></label>
+      <label>Save in folder<select id="parent"></select></label>
+      <label id="colorLabel">Folder colour<div class="color-picker"><input id="color" type="color" value="#e9b949"><div id="colorPresets"></div></div></label>
+      <label id="descriptionLabel">Note<textarea id="description" rows="3"></textarea></label>
+      <div class="actions"><button type="button" data-close>Cancel</button><button class="primary" type="submit">Save</button></div>
     </form>
   </dialog>
-  <dialog id="confirmDialog"><form method="dialog"><h2>Verwijderen?</h2><p id="confirmText"></p><div class="actions"><button value="cancel">Annuleren</button><button id="confirmDelete" class="danger" value="delete">Verwijderen</button></div></form></dialog>
-  <dialog id="reportDialog"><form method="dialog"><h2 id="reportTitle">Importeren</h2><div id="reportBody" class="report"></div><div class="actions"><button value="close" class="primary">Sluiten</button></div></form></dialog>
+  <dialog id="confirmDialog"><form method="dialog"><h2>Delete?</h2><p id="confirmText"></p><div class="actions"><button value="cancel">Cancel</button><button id="confirmDelete" class="danger" value="delete">Delete</button></div></form></dialog>
+  <dialog id="reportDialog"><form method="dialog"><h2 id="reportTitle">Import</h2><div id="reportBody" class="report"></div><div class="actions"><button value="close" class="primary">Close</button></div></form></dialog>
   <div id="toast" role="status" aria-live="polite"></div>
   <script type="module" src="/app.js"></script>
 </body>

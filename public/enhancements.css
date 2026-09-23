@@ -8,7 +8,7 @@
 .color-picker>div{display:flex;flex-wrap:wrap;gap:7px}
 .swatch{width:28px;height:28px;border-radius:50%;padding:0;border:2px solid #fff;box-shadow:0 0 0 1px #cfc5b6}
 
-/* Donkerblauw thema, gelijk aan de online uitvoering */
+/* Dark blue theme matching the online version */
 :root{color-scheme:dark;color:#e7eaf2;background:#0d1322}
 body{background:#0d1322;color:#e7eaf2}
 header{background:rgba(22,29,45,.96);border-color:#30394d}
@@ -41,13 +41,15 @@ main{max-width:1012px;margin-top:24px}
 dialog{background:#171f30;border-color:#354057;color:#e7eaf2}
 dialog::backdrop{background:#060a12aa}
 label input,label select,label textarea{background:#0f1625;border-color:#354057;color:#e7eaf2}
+#parent{font-weight:650;border-left:4px solid #5274ef;cursor:pointer}
+#parent option{background:#0f1625;color:#e7eaf2;font-weight:600}
 .empty{color:#9099ab}
 .row.drop-inside{background:#202d4b;outline-color:#5274ef}
 .row.drop-before{box-shadow:0 -3px 0 #5274ef}
 .row.drop-after{box-shadow:0 3px 0 #5274ef}
 @media(max-width:650px){#tree{padding:10px 8px;border-radius:12px}}
 
-/* Ruimtes en afmetingen van de online variant */
+/* Spacing and dimensions from the online version */
 header{min-height:66px;padding:10px 44px;gap:12px}
 .brand{font-size:18px}
 .search{height:44px;max-width:680px}

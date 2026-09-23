@@ -1,46 +1,33 @@
 # 8star Links
 
-Een lichte, volledig self-hosted bookmarkmanager met een donkerblauwe interface, geneste mappen en Firefox-import. Gebouwd met Node.js, Express en SQLite.
+A lightweight, fully self-hosted bookmark manager with nested folders, drag-and-drop sorting, Firefox import, and locally cached website icons.
 
-## Functies
+Built with Node.js, Express, and SQLite.
 
-- Onbeperkt geneste mappen
-- Links en mappen verslepen en ordenen
-- Inklapbare mappen en zoekfunctie
-- Instelbare mapkleuren
-- Firefox/Netscape HTML import en export
-- Automatische ontdubbeling bij importeren
-- JSON-back-up downloaden en terugzetten
-- Permanente SQLite-opslag
-- Responsive interface voor desktop en mobiel
-- Volledig lokaal te bouwen; geen externe container-image nodig
+## Features
 
-## Snel starten met Docker Compose
+- Unlimited nested folders
+- Drag-and-drop sorting for bookmarks and folders
+- Collapsible folders and instant search
+- Custom folder colours
+- Automatic website icons with a letter fallback
+- Website icons cached locally as PNG files
+- Firefox/Netscape HTML import and export
+- Duplicate detection during import
+- JSON backup and restore
+- Persistent SQLite storage
+- Responsive desktop and mobile interface
+- Docker and Portainer support
+- No external database required
 
-```bash
-git clone https://github.com/JOUW-GEBRUIKERSNAAM/8star-links.git
-cd 8star-links
-docker compose up -d --build
-```
+## Quick start
 
-Open daarna `http://IP-VAN-JE-SERVER:3080`.
-
-## Portainer
-
-Clone het repository op de Docker-host en bouw de image:
-
-```bash
-git clone https://github.com/JOUW-GEBRUIKERSNAAM/8star-links.git
-cd 8star-links
-docker build -t 8star-links:latest .
-```
-
-Maak daarna in Portainer een Stack met:
+Create a `compose.yml` file:
 
 ```yaml
 services:
   8star-links:
-    image: 8star-links:latest
+    image: ghcr.io/timom84/8star-links:latest
     container_name: 8star-links
     restart: unless-stopped
     environment:
@@ -60,25 +47,62 @@ volumes:
   8star-links-data:
 ```
 
-## Data en back-ups
-
-Met de meegeleverde `docker-compose.yml` staat de database in `./data/links.sqlite`. De map `data` en alle SQLite-bestanden worden door Git genegeerd. Vanuit de webinterface kun je ook een JSON-back-up downloaden en terugzetten.
-
-## Firefox importeren
-
-Exporteer in Firefox je bladwijzers als HTML. Open vervolgens in 8star Links linksboven het instellingenmenu en kies **Firefox importeren**. De import behoudt de mappenstructuur, slaat bestaande links over en verwijdert dubbele URL's.
-
-## Beveiliging
-
-8star Links bevat bewust geen eigen gebruikersaccounts of authenticatie. Publiceer de applicatie niet rechtstreeks op internet zonder beveiligde reverse proxy, bijvoorbeeld met Authentik, Authelia, VPN of een access-list.
-
-## Bijwerken
+Start the application:
 
 ```bash
-git pull
+docker compose up -d
+```
+
+Open `http://YOUR-SERVER-IP:3080`.
+
+## Portainer
+
+1. Open **Stacks** and select **Add stack**.
+2. Paste the Compose configuration from the Quick start section.
+3. Select **Deploy the stack**.
+4. Open `http://YOUR-SERVER-IP:3080`.
+
+The named volume `8star-links-data` keeps the database and cached website icons persistent when the container is replaced or updated.
+
+## Build from source
+
+```bash
+git clone https://github.com/TimoM84/8star-links.git
+cd 8star-links
 docker compose up -d --build
 ```
 
-## Licentie
+## Import from Firefox
 
-Beschikbaar onder de [MIT License](LICENSE).
+1. Export your Firefox bookmarks as an HTML file.
+2. Open the settings menu in the upper-left corner of 8star Links.
+3. Select **Import from Firefox**.
+4. Choose the exported HTML file.
+
+The folder structure is preserved, existing bookmarks are skipped, and duplicate URLs are removed.
+
+## Data and backups
+
+Application data is stored in `/app/data` inside the container:
+
+- `links.sqlite` contains bookmarks, folders, colours, and ordering.
+- `favicons/` contains locally cached PNG website icons.
+
+The web interface can download and restore a JSON backup. Creating a backup before major updates is recommended.
+
+Do not remove the Docker volume if you want to keep your data.
+
+## Updating
+
+```bash
+docker compose pull
+docker compose up -d
+```
+
+## Security
+
+8star Links intentionally does not include user accounts or authentication. Do not expose it directly to the public internet without protection such as a VPN, an authenticated reverse proxy, Authentik, Authelia, or an access list.
+
+## License
+
+8star Links is available under the [MIT License](LICENSE).
