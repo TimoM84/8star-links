@@ -1,0 +1,64 @@
+.row.drop-inside{outline:2px solid #d96b42;background:#fff4e9}
+.row.drop-before{box-shadow:0 -3px 0 #d96b42}
+.row.drop-after{box-shadow:0 3px 0 #d96b42}
+.folder>.row{border-left:4px solid var(--folder-color,#e9b949)}
+.folder>.row .badge{background:color-mix(in srgb,var(--folder-color,#e9b949) 72%,white)}
+.color-picker{display:flex;align-items:center;gap:10px;margin-top:7px}
+.color-picker input{width:48px;height:38px;margin:0;padding:3px}
+.color-picker>div{display:flex;flex-wrap:wrap;gap:7px}
+.swatch{width:28px;height:28px;border-radius:50%;padding:0;border:2px solid #fff;box-shadow:0 0 0 1px #cfc5b6}
+
+/* Donkerblauw thema, gelijk aan de online uitvoering */
+:root{color-scheme:dark;color:#e7eaf2;background:#0d1322}
+body{background:#0d1322;color:#e7eaf2}
+header{background:rgba(22,29,45,.96);border-color:#30394d}
+.brand{color:#f0f2f7}
+.brand span{color:#5274ef}
+.search{background:#212a3b;border-color:#212a3b}
+.search input{color:#e7eaf2}
+.search input::placeholder{color:#9da6b8}
+button{background:#161e2e;border-color:#3a455a;color:#e7eaf2}
+button:hover{background:#232d41}
+.primary{background:#3458db;border-color:#3458db;color:#fff}
+.primary:hover{background:#4267e7}
+main{max-width:1012px;margin-top:24px}
+#tree{min-height:420px;padding:14px 38px;background:#171f30;border:1px solid #30394d;border-radius:16px}
+.row{background:transparent;border-color:transparent;box-shadow:none;color:#e7eaf2}
+.row:hover{background:#1d2638}
+.folder>.row{border-left-color:transparent}
+.folder>.row .badge{background:transparent;color:var(--folder-color,#4b9af0);font-size:20px}
+.bookmark .badge{background:#26355f;color:#9eb2ff}
+.url{color:#7f899d}
+.children{border-color:#354057}
+.menu,.more>div{background:#171f30;border-color:#354057;color:#e7eaf2}
+.menu button,.more button{color:#e7eaf2}
+.menu button:hover,.more button:hover{background:#232d41}
+dialog{background:#171f30;border-color:#354057;color:#e7eaf2}
+dialog::backdrop{background:#060a12aa}
+label input,label select,label textarea{background:#0f1625;border-color:#354057;color:#e7eaf2}
+.empty{color:#9099ab}
+.row.drop-inside{background:#202d4b;outline-color:#5274ef}
+.row.drop-before{box-shadow:0 -3px 0 #5274ef}
+.row.drop-after{box-shadow:0 3px 0 #5274ef}
+@media(max-width:650px){#tree{padding:10px 8px;border-radius:12px}}
+
+/* Ruimtes en afmetingen van de online variant */
+header{min-height:66px;padding:10px 44px;gap:12px}
+.brand{font-size:18px}
+.search{height:44px;max-width:680px}
+main{max-width:1012px;margin:24px auto;padding-left:16px;padding-right:16px}
+#tree{padding:9px 14px 26px;min-height:424px}
+.node{margin:0}
+.row{min-height:65px;padding:8px 10px;gap:12px;border-radius:0}
+.children{margin-left:29px;padding-left:18px}
+.toggle{width:26px;font-size:24px;line-height:1;color:#dce2ee}
+.badge{flex:0 0 34px;width:34px;height:34px;border-radius:9px;font-size:16px;font-weight:700}
+.folder>.row .badge{width:25px;flex-basis:25px;color:var(--folder-color,#4b9af0)}
+.folder>.row .badge svg{display:block;width:23px;height:23px;fill:currentColor}
+.name{font-size:16px;line-height:1.3}
+.url{font-size:12px;margin-top:2px}
+.grip{width:12px;color:#8993a6;opacity:0;font-size:17px;cursor:grab}
+.row:hover .grip,.row.dragging .grip{opacity:1}
+.count{display:inline-grid;place-items:center;min-width:24px;height:24px;padding:0 7px;border-radius:12px;background:#293348;color:#b9c1d0;font-size:12px}
+.more summary{color:#8f98aa;letter-spacing:2px}
+@media(max-width:650px){header{padding:10px 14px}.brand{font-size:16px}main{padding-left:8px;padding-right:8px}#tree{padding:8px 4px}.row{min-height:58px;gap:7px}.children{margin-left:18px;padding-left:8px}.grip{display:none}}

@@ -1,0 +1,17 @@
+services:
+  8star-links:
+    build: .
+    container_name: 8star-links
+    restart: unless-stopped
+    environment:
+      TZ: Europe/Amsterdam
+      PORT: 3000
+      DATA_DIR: /app/data
+    volumes:
+      - ./data:/app/data
+    ports:
+      - "3080:3000"
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
