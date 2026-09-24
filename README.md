@@ -4,6 +4,8 @@ A lightweight, fully self-hosted bookmark manager with nested folders, drag-and-
 
 Built with Node.js, Express, and SQLite.
 
+![8star Links with expanded folders and locally cached website icons](docs/screenshots/expanded-folders.jpg)
+
 ## Features
 
 - Unlimited nested folders
@@ -19,6 +21,16 @@ Built with Node.js, Express, and SQLite.
 - Responsive desktop and mobile interface
 - Docker and Portainer support
 - No external database required
+
+## Screenshots
+
+| Bookmark overview | Edit a bookmark |
+| --- | --- |
+| ![Bookmark overview](docs/screenshots/overview.jpg) | ![Edit a bookmark and choose its folder](docs/screenshots/edit-bookmark.jpg) |
+
+### Import, export and backups
+
+![Settings menu with import, export and backup options](docs/screenshots/settings-menu.jpg)
 
 ## Quick start
 
