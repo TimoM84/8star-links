@@ -7,6 +7,7 @@ import { decodeIco, isIco } from "icojs";
 import { fileURLToPath } from "node:url";
 
 const root=path.dirname(fileURLToPath(import.meta.url));
+const appVersion=JSON.parse(fs.readFileSync(path.join(root,"package.json"),"utf8")).version;
 const dataDir=process.env.DATA_DIR||path.join(root,"data");fs.mkdirSync(dataDir,{recursive:true});
 const faviconDir=path.join(dataDir,"favicons");fs.mkdirSync(faviconDir,{recursive:true});
 const db=new Database(path.join(dataDir,"links.sqlite"));db.pragma("journal_mode = WAL");db.pragma("foreign_keys = ON");
@@ -14,7 +15,7 @@ db.exec(`CREATE TABLE IF NOT EXISTS nodes(id INTEGER PRIMARY KEY AUTOINCREMENT,k
 const app=express();app.use(express.json({limit:"8mb"}));app.use(express.text({type:["text/html","text/plain"],limit:"8mb"}));app.use(express.static(path.join(root,"public")));
 const row=n=>({id:n.id,kind:n.kind,parentId:n.parent_id,title:n.title,url:n.url,description:n.description,tags:n.tags,color:n.color,position:n.position,createdAt:n.created_at,updatedAt:n.updated_at});
 const all=()=>db.prepare("SELECT * FROM nodes ORDER BY position,id").all().map(row);
-app.get("/api/health",(_,res)=>res.json({ok:true}));app.get("/api/nodes",(_,res)=>res.json({nodes:all()}));
+app.get("/api/health",(_,res)=>res.json({ok:true,version:appVersion}));app.get("/api/nodes",(_,res)=>res.json({nodes:all()}));
 app.post("/api/nodes",(req,res)=>{const p=req.body||{},kind=p.kind==="folder"?"folder":"bookmark",title=String(p.title||"Untitled").trim(),url=kind==="bookmark"?String(p.url||"").trim():null;if(kind==="bookmark"&&!/^https?:\/\//i.test(url))return res.status(400).json({error:"Enter a complete web address, including https://"});const info=db.prepare("INSERT INTO nodes(kind,parent_id,title,url,description,tags,color,position,updated_at) VALUES(?,?,?,?,?,?,?,?,datetime('now'))").run(kind,p.parentId??null,title,url,String(p.description||""),JSON.stringify(p.tags||[]),p.color||null,Number(p.position)||Date.now());res.status(201).json({node:row(db.prepare("SELECT * FROM nodes WHERE id=?").get(info.lastInsertRowid))})});
 app.put("/api/nodes",(req,res)=>{const p=req.body||{};if(!p.id)return res.status(400).json({error:"Item is missing"});db.prepare("UPDATE nodes SET kind=?,parent_id=?,title=?,url=?,description=?,tags=?,color=?,position=?,updated_at=datetime('now') WHERE id=?").run(p.kind,p.parentId??null,String(p.title||"Untitled"),p.kind==="folder"?null:p.url||null,p.description||"",JSON.stringify(p.tags||[]),p.color||null,Number(p.position)||Date.now(),p.id);if(p.refreshIcon)fs.rmSync(path.join(faviconDir,`${Number(p.id)}.png`),{force:true});res.json({node:row(db.prepare("SELECT * FROM nodes WHERE id=?").get(p.id))})});
 app.delete("/api/nodes",(req,res)=>{const id=Number(req.body?.id);if(!id)return res.status(400).json({error:"Item is missing"});const nodes=all(),ids=new Set([id]);let changed=true;while(changed){changed=false;for(const n of nodes)if(n.parentId&&ids.has(n.parentId)&&!ids.has(n.id)){ids.add(n.id);changed=true}}const del=db.prepare("DELETE FROM nodes WHERE id=?"),tx=db.transaction(()=>{for(const x of ids)del.run(x)});tx();for(const x of ids)fs.rmSync(path.join(faviconDir,`${x}.png`),{force:true});res.json({ok:true,deleted:ids.size})});
