@@ -1,6 +1,6 @@
 # 8star Links
 
-A lightweight, fully self-hosted bookmark manager with nested folders, drag-and-drop sorting, Firefox import, and locally cached website icons.
+A lightweight, fully self-hosted bookmark manager with nested folders, drag-and-drop sorting, automatic page titles, Firefox import, and locally cached website icons.
 
 Built with Node.js, Express, and SQLite.
 
@@ -25,9 +25,18 @@ Built with Node.js, Express, and SQLite.
 
 ## Screenshots
 
-| Bookmark overview | Edit a bookmark |
+| Bookmark overview | Add a bookmark |
 | --- | --- |
-| ![Bookmark overview](docs/screenshots/overview.jpg) | ![Edit a bookmark and choose its folder](docs/screenshots/edit-bookmark.jpg) |
+| ![Bookmark overview](docs/screenshots/overview.jpg) | ![Add a bookmark using its web address, automatic title and destination folder](docs/screenshots/edit-bookmark.jpg) |
+
+### Adding bookmarks
+
+1. Select **+ Bookmark**.
+2. Enter the **Web address** first. Both `example.com` and `https://example.com` are accepted.
+3. 8star Links automatically adds `https://` when needed and retrieves the website title.
+4. Edit the suggested **Title** if desired, choose the destination folder, and select **Save**.
+
+Generic privacy-gate and cookie-consent page titles are ignored when possible.
 
 ### Import, export and backups
 
