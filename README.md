@@ -12,6 +12,7 @@ Built with Node.js, Express, and SQLite.
 - Drag-and-drop sorting for bookmarks and folders
 - Collapsible folders and instant search
 - Custom folder colours
+- Automatic page titles when entering a web address
 - Automatic website icons with a letter fallback
 - Website icons cached locally as PNG files
 - Firefox/Netscape HTML import and export
