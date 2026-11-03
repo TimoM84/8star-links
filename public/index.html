@@ -18,12 +18,15 @@
     <button id="addFolder">＋ Folder</button><button id="addBookmark" class="primary">＋ Bookmark</button>
   </header>
   <div id="settingsMenu" class="menu hidden">
+    <button id="reorderToggle" data-action="reorder" role="menuitemcheckbox" aria-checked="false"><span>Edit layout</span><span class="switch" aria-hidden="true"></span></button>
+    <hr>
     <button data-action="import">Import from Firefox</button>
     <button data-action="export">Export for Firefox</button>
     <button data-action="backup">Download backup</button>
     <button data-action="restore">Restore backup</button>
   </div>
   <main><div id="empty" class="empty hidden">No bookmarks yet. Add a folder or bookmark, or import your Firefox bookmarks.</div><div id="tree"></div></main>
+  <div id="reorderBar" class="reorder-bar hidden" role="status"><span class="reorder-dot" aria-hidden="true"></span><span class="reorder-text">Edit layout is on<small>Drag folders and bookmarks to reorder</small></span><button id="reorderDone" type="button" class="primary">Done</button></div>
   <input id="importInput" type="file" accept=".html,.htm,text/html" hidden>
   <input id="restoreInput" type="file" accept=".json,application/json" hidden>
   <dialog id="itemDialog">

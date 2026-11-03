@@ -9,7 +9,8 @@ Built with Node.js, Express, and SQLite.
 ## Features
 
 - Unlimited nested folders
-- Drag-and-drop sorting for bookmarks and folders
+- Drag-and-drop sorting for bookmarks and folders, only while **Edit layout** is switched on
+- Add a bookmark directly to any folder with its **+** button
 - Collapsible folders and instant search
 - Custom folder colours
 - Automatic HTTPS prefix and page titles when entering a web address
@@ -37,6 +38,18 @@ Built with Node.js, Express, and SQLite.
 4. Edit the suggested **Title** if desired, choose the destination folder, and select **Save**.
 
 Generic privacy-gate and cookie-consent page titles are ignored when possible.
+
+To add a bookmark straight into a folder, select the **+** button on the right of that folder. The form opens with that folder already selected as the destination; you can still choose a different folder. The **+ Bookmark** button in the header adds to the top level.
+
+### Reordering with Edit layout
+
+To prevent accidental moves while scrolling (especially on phones and tablets), drag-and-drop is disabled by default.
+
+1. Open the settings menu (⚙) and switch on **Edit layout**.
+2. Drag handles (⠿) appear and folders and bookmarks can be dragged into place.
+3. Select **Done** in the bar at the bottom of the screen (or press Esc) when finished.
+
+Edit layout always switches off again when the page is reloaded. Items can be moved at any time via **••• → Edit / move**, regardless of this setting.
 
 ### Import, export and backups
 
